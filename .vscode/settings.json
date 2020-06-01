@@ -1,0 +1,8 @@
+{
+	"files.exclude": {
+		"C:/Documents/UnrealProjects/Building_Escape/.vscode": true,
+		"C:/Documents/UnrealProjects/Building_Escape/Content": true,
+		"C:/Documents/UnrealProjects/Building_Escape/Intermediate": true
+	},
+	"C_Cpp.intelliSenseEngineFallback": "Enabled"
+}
