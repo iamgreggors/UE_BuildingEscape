@@ -1,8 +1,9 @@
 {
 	"files.exclude": {
-		"C:/Documents/UnrealProjects/Building_Escape/.vscode": true,
-		"C:/Documents/UnrealProjects/Building_Escape/Content": true,
-		"C:/Documents/UnrealProjects/Building_Escape/Intermediate": true
-	},
-	"C_Cpp.intelliSenseEngineFallback": "Enabled"
+		"C:/Documents/GIT/UE_BuildingEscape/.git": true,
+		"C:/Documents/GIT/UE_BuildingEscape/.vscode": true,
+		"C:/Documents/GIT/UE_BuildingEscape/Content": true,
+		"C:/Documents/GIT/UE_BuildingEscape/Intermediate": true,
+		"C:/Documents/GIT/UE_BuildingEscape/Saved": true
+	}
 }
