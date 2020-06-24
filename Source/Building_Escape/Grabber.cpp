@@ -30,6 +30,7 @@ void UGrabber::BeginPlay()
 void UGrabber::Grab()
 {
 
+	UE_LOG(LogTemp, Warning, TEXT("Attempting Grab"));
 	// Try and reach any actors with a physics body set
 	FHitResult HitResult = GetFirstPhysicsBodyInReach();
 	UPrimitiveComponent* ComponentToGrab = HitResult.GetComponent();
@@ -37,10 +38,12 @@ void UGrabber::Grab()
 	// If hit, then attach physics handle
 	if(HitResult.GetActor())
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Got Actor"));
+
 		PhysicsHandle->GrabComponentAtLocation
 			(
 				ComponentToGrab,
-				NAME_None,
+				FName("hand_r"),	// TODO Maybe try hand_r
 				GetPlayerReach()
 			);
 	}
@@ -66,30 +69,30 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	// If physics handle is attached, move object
 
-	static bool HighlightOn = false;
+	//static bool HighlightOn = false;
 
-	if(!HighlightOn)
-	{
+	//if(!HighlightOn)
+	//{
 
-	FHitResult HitResult = GetFirstPhysicsBodyInReach();
-	UPrimitiveComponent* ComponentToHighlight = HitResult.GetComponent();
+	//FHitResult HitResult = GetFirstPhysicsBodyInReach();
+	//UPrimitiveComponent* ComponentToHighlight = HitResult.GetComponent();
 
-	if(HitResult.GetActor())
-	{
-		UMaterialInterface* MaterialToEdit = ComponentToHighlight->GetMaterial(0);
+	//if(HitResult.GetActor())
+	//{
+	//	UMaterialInterface* MaterialToEdit = ComponentToHighlight->GetMaterial(0);
 
-		UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(MaterialToEdit, this, "Brass_Inst");
+	//	UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(MaterialToEdit, this, "Brass_Inst");
 
-		if(DynamicMaterial)
-		{
-			ComponentToHighlight->SetMaterial(0, DynamicMaterial);
-			DynamicMaterial->SetScalarParameterValue("Highlight", 1.0);
-			HighlightOn = true;
-		}
-	}
+	//	if(DynamicMaterial)
+	//	{
+	//		ComponentToHighlight->SetMaterial(0, DynamicMaterial);
+	//		DynamicMaterial->SetScalarParameterValue("Highlight", 1.0);
+	//		HighlightOn = true;
+	//	}
+	//}
 
 
-	}
+	//}
 
 	if(PhysicsHandle->GrabbedComponent)
 	{
@@ -148,8 +151,12 @@ FVector UGrabber::GetPlayerReach() const
 		OUT PlayerViewPointRotation
 		);
 
-	return PlayerViewPointLocation + (PlayerViewPointRotation.Vector() * Reach);
+
+	 FVector ReachVector = PlayerViewPointLocation + (PlayerViewPointRotation.Vector() * Reach);
+	 return ReachVector;
+
 }
+
 
 FVector UGrabber::GetPlayerPosition() const
 {
